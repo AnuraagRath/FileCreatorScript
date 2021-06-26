@@ -3,6 +3,9 @@ Using Shell-Scripting a basic program is wriiten to create new Files or Director
 
 ![title](/img/title.png)
 
+* Clone the repo
+* Navigate to the Directory
+* Run the file - "./FileCreatorScript", without quotes
 
 ## Creating a Directory:
 * A directory/folder can be created by selecting 'd'
