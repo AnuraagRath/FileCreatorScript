@@ -41,7 +41,7 @@ else
 			elif [ "$proFle" == "sh" ]; then
 				touch ${fileNam}.sh
 				
-				read -p "Set Permitions; rwx/rw/rx/r/w/x: " perm
+				read -p "Set Priveleges; rwx/rw/rx/r/w/x: " perm
 				
 				if [ "$perm" == "rwx" ]; then
 					chmod 755 ${fileNam}.sh
