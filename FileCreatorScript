@@ -1,0 +1,78 @@
+#!/bin/bash
+
+read -p "Enter name of File: " fileNam
+
+if [ -e "$fileNam" ]; then
+	echo "The File exists"
+
+	if [ -d "$fileNam" ]; then
+		echo "The file is a Directory"
+	fi
+
+	if [ -x "$fileNam" ]; then
+		echo "The file is executable"
+	fi
+
+	if [ -w "$fileNam" ]; then
+		echo "The file is writable too"
+	fi
+
+	if [ -r "$fileNam" ]; then
+		echo "The file is readable as well"
+	fi
+
+else
+	echo "Your file doesnt exist. Let me create it"
+
+	read -p "File or Directory; f/d: " typeIt
+
+	if [ "$typeIt" == "f" ] || [ "$typeIt" == "file" ]; then
+		read -p "Textfile or ProgramFile; t/p: " fle
+		
+		if [ "$fle" == "t" ]; then
+			touch ${fileNam}.txt
+			read -p "Enter title of Document: " titl
+			echo "$titl" > ${fileNam}.txt
+		elif [ "$fle" == "p" ]; then
+			read -p "Pythonfile or Shellscript; py/sh: " proFle
+
+			if [ "$proFle" == "py" ]; then
+				touch ${fileNam}.py
+			elif [ "$proFle" == "sh" ]; then
+				touch ${fileNam}.sh
+				
+				read -p "Set Permitions; rwx/rw/rx/r/w/x: " perm
+				
+				if [ "$perm" == "rwx" ]; then
+					chmod 755 ${fileNam}.sh
+				elif [ "$perm" == "rw" ]; then
+					chmod 655 ${fileNam}.sh
+				elif [ "$perm" == "rx" ]; then
+					chmod 555 ${fileNam}.sh
+				elif [ "$perm" == "r" ]; then
+					chmod 444 ${fileNam}.sh
+				elif [ "$perm" == "w" ]; then
+					chmod 222 ${fileNam}.sh
+				elif [ "$perm" == "x" ]; then
+					chmod 111  ${fileNam}.sh
+				else
+					chmod 777 ${fileNam}.sh
+				fi
+			
+			else
+				echo "You did not mention Program-filetype"
+			fi
+  		else
+			echo "You did not mention filetype"
+		fi
+
+	elif [ "$typeIt" == "d" ] || [ "$typeIt" == "directory" ]; then
+		mkdir $fileNam
+	else
+		echo "You did not mention wat you want"
+	fi
+	
+	echo "Your file has been created"
+fi
+
+echo "Created by Anuraag Rath"
